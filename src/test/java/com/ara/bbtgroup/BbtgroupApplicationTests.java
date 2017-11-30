@@ -1,6 +1,6 @@
 package com.ara.bbtgroup;
 
-import com.ara.bbtgroup.entities.Users;
+import com.ara.bbtgroup.entities.User;
 import com.ara.bbtgroup.entities.UsersRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,16 +21,16 @@ public class BbtgroupApplicationTests {
 	private UsersRepository usersRepository;
 	@Before
 	public void setUp() throws Exception{
-		Users users = new Users("Max", "Muster");
+		User user = new User("Max", "Muster");
 
-		assertNull(users.getId());
-		this.usersRepository.save(users);
-		assertNotNull(users.getId());
+		assertNull(user.getId());
+		this.usersRepository.save(user);
+		assertNotNull(user.getId());
 	}
 
 	@Test
 	public void contextLoads() {
-		Users userA = usersRepository.findByFirstname("Max");
+		User userA = usersRepository.findByFirstname("Max");
 		assertNotNull(userA);
 
 	}

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "USERS")
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,11 +13,11 @@ public class Users {
     private String firstname;
     private String lastname;
 
-    public Users(){
+    public User(){
         super();
     }
 
-    public Users(String firstname, String lastname) {
+    public User(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }
@@ -48,7 +48,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "User{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
