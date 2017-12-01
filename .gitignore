@@ -15,9 +15,6 @@ target/
 *.iml
 *.ipr
 
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
+src/main/resources/static/
+src/main/resources/templates/
+src/main/resources/application.properties
