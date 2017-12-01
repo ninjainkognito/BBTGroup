@@ -22,7 +22,6 @@ public class BbtgroupApplicationTests {
 	@Before
 	public void setUp() throws Exception{
 		User user = new User("Max", "Muster");
-
 		assertNull(user.getId());
 		this.userRepository.save(user);
 		assertNotNull(user.getId());
