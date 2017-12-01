@@ -32,9 +32,5 @@ public class BbtgroupApplicationTests {
 	public void contextLoads() {
 		User userA = userRepository.findByFirstname("Max");
 		assertNotNull(userA);
-
 	}
-
-
-
 }
