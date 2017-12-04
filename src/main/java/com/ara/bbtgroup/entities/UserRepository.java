@@ -2,6 +2,6 @@ package com.ara.bbtgroup.entities;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
-    User findByFirstname(Integer id);
+public interface UserRepository extends CrudRepository<User, Long> {
+
 }
