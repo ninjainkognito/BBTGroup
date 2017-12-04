@@ -28,8 +28,8 @@ public class BbtgroupApplicationTests {
 	}
 
 	@Test
-	public void contextLoads() {
-		User userA = userRepository.findByFirstname("Max");
-		assertNotNull(userA);
+	public void testTest(){
+		int a = 12;
+		assertEquals(12,a);
 	}
 }

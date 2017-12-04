@@ -1,19 +1,31 @@
 package com.ara.bbtgroup.model.response;
 
-public class UsersResponse {
+public class UserResponse {
+
+    // ======================================
+    // =             Attributes             =
+    // ======================================
 
     private Integer id;
     private String firstname;
     private String lastname;
 
-    public UsersResponse() {
+    // ======================================
+    // =            Constructors            =
+    // ======================================
+
+    public UserResponse() {
         super();
     }
 
-    public UsersResponse(String firstname, String lastname) {
+    public UserResponse(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }
+
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
 
     public Integer getId() {
         return id;

@@ -1,18 +1,11 @@
-package com.ara.bbtgroup.entities;
+package com.ara.bbtgroup.model.request;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "bbtgroup_user")
-public class User {
+public class UserRequest {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String firstname;
     private String lastname;
@@ -21,13 +14,14 @@ public class User {
     // =            Constructors            =
     // ======================================
 
-    public User(){
-        super();
-    }
-
-    public User(String firstname, String lastname) {
+    public UserRequest(Integer id, String firstname, String lastname) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
+    }
+
+    public UserRequest(){
+        super();
     }
 
     // ======================================
@@ -56,17 +50,5 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    // ======================================
-    // =     equals, hashCode & to String   =
-    // ======================================
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                '}';
     }
 }
