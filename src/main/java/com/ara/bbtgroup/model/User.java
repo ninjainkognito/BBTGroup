@@ -1,4 +1,4 @@
-package com.ara.bbtgroup.entities;
+package com.ara.bbtgroup.model;
 
 import javax.persistence.*;
 

@@ -1,7 +1,7 @@
 package com.ara.bbtgroup.rest;
 
 
-import com.ara.bbtgroup.entities.User;
+import com.ara.bbtgroup.model.User;
 import com.ara.bbtgroup.repository.UserRepository;
 import com.ara.bbtgroup.model.request.UserRequest;
 import com.ara.bbtgroup.model.response.UserResponse;
