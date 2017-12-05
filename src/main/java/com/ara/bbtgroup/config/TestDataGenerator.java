@@ -1,8 +1,7 @@
 package com.ara.bbtgroup.config;
 
 import com.ara.bbtgroup.entities.User;
-import com.ara.bbtgroup.entities.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ara.bbtgroup.repository.UserRepository;
 
 public class TestDataGenerator {
 

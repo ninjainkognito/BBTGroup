@@ -2,10 +2,9 @@ package com.ara.bbtgroup.rest;
 
 
 import com.ara.bbtgroup.entities.User;
-import com.ara.bbtgroup.entities.UserRepository;
+import com.ara.bbtgroup.repository.UserRepository;
 import com.ara.bbtgroup.model.request.UserRequest;
 import com.ara.bbtgroup.model.response.UserResponse;
-import org.json.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,16 +27,16 @@ public class UserResource {
     // =             GET METHOD             =
     // ======================================
 
-    @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody List<User> getAllUsers() {
 
         return (List<User>) userRepository.findAll();
     }
 
-    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<User> getEmployee() {
+    @GetMapping(path = "/{firstname}")
+    public ResponseEntity<User> getUserByFirstname(@PathVariable String firstname) {
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(userRepository.findByFirstname(firstname), HttpStatus.OK);
     }
 
     // ======================================

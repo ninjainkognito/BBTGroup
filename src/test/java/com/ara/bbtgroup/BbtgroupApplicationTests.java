@@ -1,7 +1,6 @@
 package com.ara.bbtgroup;
 
-import com.ara.bbtgroup.entities.User;
-import com.ara.bbtgroup.entities.UserRepository;
+import com.ara.bbtgroup.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
