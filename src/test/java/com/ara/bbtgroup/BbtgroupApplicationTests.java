@@ -21,15 +21,10 @@ public class BbtgroupApplicationTests {
 	private UserRepository userRepository;
 	@Before
 	public void setUp() throws Exception{
-		User user = new User("Max", "Muster");
-		assertNull(user.getId());
-		this.userRepository.save(user);
-		assertNotNull(user.getId());
 	}
 
 	@Test
-	public void testTest(){
-		int a = 12;
-		assertEquals(12,a);
+	public void contextLoads(){
+
 	}
 }

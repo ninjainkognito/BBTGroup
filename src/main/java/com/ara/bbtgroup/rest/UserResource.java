@@ -5,12 +5,15 @@ import com.ara.bbtgroup.entities.User;
 import com.ara.bbtgroup.entities.UserRepository;
 import com.ara.bbtgroup.model.request.UserRequest;
 import com.ara.bbtgroup.model.response.UserResponse;
+import org.json.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(ResourceConstants.EMPLOYEE_V1)
@@ -25,42 +28,26 @@ public class UserResource {
     // =             GET METHOD             =
     // ======================================
 
-    @GetMapping(path = "/all")
-    public @ResponseBody Iterable<User> getAllUsers() {
+    @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody List<User> getAllUsers() {
 
-        // This returns a JSON or XML with the users
-        return userRepository.findAll();
+        return (List<User>) userRepository.findAll();
     }
 
-    @GetMapping(path="/add") // Map ONLY GET Requests
-    public @ResponseBody String addNewUser (@RequestParam String firstname
-            , @RequestParam String lastname) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<User> getEmployee() {
 
-        User n = new User();
-        n.setFirstname(firstname);
-        n.setLastname(lastname);
-        userRepository.save(n);
-        return "Saved";
-    }
-
-
-    @RequestMapping(path = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserResponse> getEmployee() {
-
-        return new ResponseEntity<>(new UserResponse("Test", "Test"),HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // ======================================
     // =             POST METHOD            =
     // ======================================
 
-    @RequestMapping(path = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserResponse> createUser(
-            @RequestBody UserRequest userRequest){
-
-        return new ResponseEntity<>(new UserResponse(), HttpStatus.CREATED);
+    @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<User> createUser(@RequestBody User userRequest){
+        userRepository.save(userRequest);
+        return new ResponseEntity<>(userRequest, HttpStatus.CREATED);
     }
 
     // ======================================
