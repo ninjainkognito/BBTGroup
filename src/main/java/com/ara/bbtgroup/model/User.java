@@ -14,8 +14,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String firstname;
-    private String lastname;
+
+    private String username;
+
+    private String password;
 
     // ======================================
     // =            Constructors            =
@@ -25,9 +27,9 @@ public class User {
         super();
     }
 
-    public User(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     // ======================================
@@ -42,20 +44,20 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     // ======================================
@@ -65,8 +67,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
