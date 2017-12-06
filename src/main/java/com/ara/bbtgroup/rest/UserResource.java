@@ -3,8 +3,6 @@ package com.ara.bbtgroup.rest;
 
 import com.ara.bbtgroup.model.User;
 import com.ara.bbtgroup.repository.UserRepository;
-import com.ara.bbtgroup.model.request.UserRequest;
-import com.ara.bbtgroup.model.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -55,11 +53,11 @@ public class UserResource {
 
     @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserResponse> udpateUser(
+    public ResponseEntity<User> udpateUser(
             @RequestBody
-                    UserRequest userRequestRequest) {
+                    User userRequestRequest) {
 
-        return new ResponseEntity<>(new UserResponse(), HttpStatus.OK);
+        return new ResponseEntity<>(new User(), HttpStatus.OK);
     }
 
     // ======================================

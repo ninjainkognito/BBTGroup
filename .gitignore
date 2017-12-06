@@ -9,5 +9,3 @@ target/
 
 src/main/resources/static/
 src/main/resources/templates/
-src/main/resources/application.properties
-src/main/java/com/ara/bbtgroup/rest/
