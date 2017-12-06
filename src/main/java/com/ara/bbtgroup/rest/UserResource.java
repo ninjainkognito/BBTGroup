@@ -34,7 +34,7 @@ public class UserResource {
     @GetMapping(path = "/{firstname}")
     public ResponseEntity<User> getUserByFirstname(@PathVariable String firstname) {
 
-        return new ResponseEntity<>(userRepository.findByFirstname(firstname), HttpStatus.OK);
+        return new ResponseEntity<>(userRepository.findByUsername(firstname), HttpStatus.OK);
     }
 
     // ======================================
