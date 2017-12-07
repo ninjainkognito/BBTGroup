@@ -3,7 +3,6 @@ package com.ara.bbtgroup.rest;
 
 import com.ara.bbtgroup.model.User;
 import com.ara.bbtgroup.repository.UserRepository;
-import org.aspectj.weaver.ast.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
