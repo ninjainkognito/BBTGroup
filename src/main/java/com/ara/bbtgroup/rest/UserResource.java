@@ -43,6 +43,7 @@ public class UserResource {
 
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> createUser(@RequestBody User userRequest){
+
         userRepository.save(userRequest);
         return new ResponseEntity<User>(userRequest, HttpStatus.CREATED);
     }
