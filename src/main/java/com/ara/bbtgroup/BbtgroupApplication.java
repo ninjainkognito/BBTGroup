@@ -1,5 +1,7 @@
 package com.ara.bbtgroup;
 
+import com.ara.bbtgroup.model.User;
+import com.ara.bbtgroup.rest.UserResource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

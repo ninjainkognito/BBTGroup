@@ -3,6 +3,7 @@ package com.ara.bbtgroup.rest;
 
 import com.ara.bbtgroup.model.User;
 import com.ara.bbtgroup.repository.UserRepository;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,10 +32,10 @@ public class UserResource {
         return (List<User>) userRepository.findAll();
     }
 
-    @GetMapping(path = "/{firstname}")
-    public ResponseEntity<User> getUserByFirstname(@PathVariable String firstname) {
+    @GetMapping(path = "/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
 
-        return new ResponseEntity<>(userRepository.findByUsername(firstname), HttpStatus.OK);
+        return new ResponseEntity<>(userRepository.findByUsername(username), HttpStatus.OK);
     }
 
     // ======================================
@@ -44,7 +45,7 @@ public class UserResource {
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> createUser(@RequestBody User userRequest){
         userRepository.save(userRequest);
-        return new ResponseEntity<>(userRequest, HttpStatus.CREATED);
+        return new ResponseEntity<User>(userRequest, HttpStatus.CREATED);
     }
 
     // ======================================
@@ -54,8 +55,7 @@ public class UserResource {
     @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> udpateUser(
-            @RequestBody
-                    User userRequestRequest) {
+            @RequestBody User userRequest) {
 
         return new ResponseEntity<>(new User(), HttpStatus.OK);
     }
