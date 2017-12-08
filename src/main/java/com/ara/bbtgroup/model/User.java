@@ -10,15 +10,19 @@ public class User {
     // =             Attributes             =
     // ======================================
 
-
     @Id
     @Column(name= "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer userId;
+
     @Column
     private String username;
+
     @Column
     private String password;
+
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="usercredential")
+    private Employee employeeInformation;
 
     // ======================================
     // =            Constructors            =
@@ -28,21 +32,22 @@ public class User {
         super();
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, Employee employeeInformation) {
         this.username = username;
         this.password = password;
+        this.employeeInformation = employeeInformation;
     }
 
     // ======================================
     // =          Getters & Setters         =
     // ======================================
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -61,15 +66,11 @@ public class User {
         this.password = password;
     }
 
-    // ======================================
-    // =     equals, hashCode & to String   =
-    // ======================================
+    public Employee getEmployeeInformation() {
+        return employeeInformation;
+    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public void setEmployeeInformation(Employee employeeInformation) {
+        this.employeeInformation = employeeInformation;
     }
 }

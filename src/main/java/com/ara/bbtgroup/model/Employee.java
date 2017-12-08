@@ -2,6 +2,8 @@ package com.ara.bbtgroup.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "employee")
@@ -12,6 +14,7 @@ public class Employee {
     // ======================================
 
     @Id
+    @Column(name= "employee_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer employeeId;
 
@@ -25,15 +28,32 @@ public class Employee {
     private String email;
     private String phonenumber;
     private Date birthdate;
-    private Integer fk_userId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id_fk")
+    private User usercredential;
+
+    @OneToMany(mappedBy = "ownerOfTheTask")
+    private List<Task> tasks;
+
+    @OneToMany(mappedBy = "ownerOfTheContact")
+    private List<Contact> contacts;
+
+    @OneToMany(mappedBy = "ownerOfTheMarketingactivity")
+    private List<Marketingactivity> marketingactivities;
 
     // ======================================
     // =            Constructors            =
     // ======================================
 
+    public Employee() {
+        super();
+    }
+
     public Employee(String firstname, String lastname, String adddress,
                     String city, Integer zipcode, String country, String employeeRole,
-                    String email, String phonenumber, Date birthdate) {
+                    String email, String phonenumber, Date birthdate, User usercredential,
+                    List<Task> tasks, List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.adddress = adddress;
@@ -44,16 +64,15 @@ public class Employee {
         this.email = email;
         this.phonenumber = phonenumber;
         this.birthdate = birthdate;
-    }
-
-    public Employee() {
-        super();
+        this.usercredential = usercredential;
+        this.tasks = tasks;
+        this.contacts = contacts;
+        this.marketingactivities = marketingactivities;
     }
 
     // ======================================
     // =          Getters & Setters         =
     // ======================================
-
 
     public Integer getEmployeeId() {
         return employeeId;
@@ -143,4 +162,35 @@ public class Employee {
         this.birthdate = birthdate;
     }
 
+    public User getUsercredential() {
+        return usercredential;
+    }
+
+    public void setUsercredential(User usercredential) {
+        this.usercredential = usercredential;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public List<Marketingactivity> getMarketingactivities() {
+        return marketingactivities;
+    }
+
+    public void setMarketingactivities(List<Marketingactivity> marketingactivities) {
+        this.marketingactivities = marketingactivities;
+    }
 }

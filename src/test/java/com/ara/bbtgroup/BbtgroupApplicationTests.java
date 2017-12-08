@@ -16,14 +16,10 @@ import static org.junit.Assert.assertNull;
 @SpringBootTest
 public class BbtgroupApplicationTests {
 
-	@Autowired
-	private UserRepository userRepository;
-	@Before
-	public void setUp() throws Exception{
-	}
-
 	@Test
 	public void contextLoads(){
+		long a = 12;
 
+		assertEquals(a, 12);
 	}
 }
