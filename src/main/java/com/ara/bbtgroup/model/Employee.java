@@ -1,6 +1,7 @@
 package com.ara.bbtgroup.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class Employee {
     private String employeeRole;
     private String email;
     private String phonenumber;
-    private Date birthdate;
+    private LocalDate birthdate;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_fk")
@@ -52,7 +53,7 @@ public class Employee {
 
     public Employee(String firstname, String lastname, String adddress,
                     String city, Integer zipcode, String country, String employeeRole,
-                    String email, String phonenumber, Date birthdate, User usercredential,
+                    String email, String phonenumber, LocalDate birthdate, User usercredential,
                     List<Task> tasks, List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -154,11 +155,11 @@ public class Employee {
         this.phonenumber = phonenumber;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 

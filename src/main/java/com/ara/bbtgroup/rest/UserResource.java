@@ -43,7 +43,6 @@ public class UserResource {
     public ResponseEntity<User> createUser(@RequestBody User userRequest){
 
         if(userRequest == null || userRequest.getUsername() == "" || userRequest.getUsername() == "null"){
-            // todo
             return new ResponseEntity<User>(userRequest, HttpStatus.CREATED);
         }
         else{
@@ -58,7 +57,7 @@ public class UserResource {
 
     @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<User> udpateUser(
+    public ResponseEntity<User> updateUser(
             @RequestBody User userRequest) {
 
         return new ResponseEntity<>(new User(), HttpStatus.OK);
@@ -69,7 +68,7 @@ public class UserResource {
     // ======================================
 
     @RequestMapping(path = "/{userId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delteUser(@PathVariable Long userId) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
 
         userRepository.delete(userId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

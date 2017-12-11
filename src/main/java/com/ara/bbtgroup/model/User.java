@@ -34,19 +34,6 @@ public class User {
 
     public User(String username, String password, Employee employeeInformation) {
         this.username = username;
-        this.password = password;
-        this.employeeInformation = employeeInformation;
-    }
-
-    // ======================================
-    // =          Getters & Setters         =
-    // ======================================
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

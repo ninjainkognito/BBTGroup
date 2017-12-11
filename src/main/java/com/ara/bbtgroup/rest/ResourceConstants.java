@@ -9,9 +9,6 @@ public class ResourceConstants {
     public static final String DB_USERNAME = "adison";
     public static final String DB_PASSWORT = "TzP9CTQaAdvwzb";
 
-    public static final String CUSTOM_EXCEPTION_1="this is custom exception 1";
-    public static final String CUSTOM_EXCEPTION_2="this is custom exception 2";
-
     public static final String DB_URL =  String.format(
             "jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
             DB_HOSTNAME,
