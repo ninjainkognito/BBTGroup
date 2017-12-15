@@ -18,10 +18,6 @@ public class Geolocation {
     private Float latitude;
     private Float longitude;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id_fk")
-    private Customer customer;
-
     // ======================================
     // =            Constructors            =
     // ======================================
@@ -30,10 +26,9 @@ public class Geolocation {
         super();
     }
 
-    public Geolocation(Float latitude, Float longitude, Customer customer) {
+    public Geolocation(Float latitude, Float longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.customer = customer;
     }
 
     // ======================================
@@ -64,11 +59,4 @@ public class Geolocation {
         this.longitude = longitude;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }

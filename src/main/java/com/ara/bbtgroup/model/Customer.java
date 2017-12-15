@@ -1,5 +1,7 @@
 package com.ara.bbtgroup.model;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -32,10 +34,6 @@ public class Customer {
     @OneToMany(mappedBy = "ownerOfTheContact")
     private List<Contact> contacts;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "geolocation_id_fk")
-    private Geolocation customerGeolocation;
-
     // ======================================
     // =            Constructors            =
     // ======================================
@@ -47,7 +45,7 @@ public class Customer {
     public Customer(String firstname, String lastname, String address, String city,
                     Integer zipcode, String country, String email, String phonenumber,
                     String birth, boolean newsletter, String importantTextfield,
-                    List<Contact> contacts, Geolocation customerGeolocation) {
+                    List<Contact> contacts) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -60,7 +58,6 @@ public class Customer {
         this.newsletter = newsletter;
         this.importantTextfield = importantTextfield;
         this.contacts = contacts;
-        this.customerGeolocation = customerGeolocation;
     }
 
     // ======================================
@@ -170,13 +167,5 @@ public class Customer {
 
     public void setContacts(List<Contact> contacts) {
         this.contacts = contacts;
-    }
-
-    public Geolocation getCustomerGeolocation() {
-        return customerGeolocation;
-    }
-
-    public void setCustomerGeolocation(Geolocation customerGeolocation) {
-        this.customerGeolocation = customerGeolocation;
     }
 }
