@@ -1,0 +1,55 @@
+package com.ara.bbtgroup.rest;
+
+import com.ara.bbtgroup.model.Customer;
+import com.ara.bbtgroup.model.User;
+import com.ara.bbtgroup.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Controller
+@RequestMapping("/customers")
+public class CustomerResource {
+
+    @Autowired
+    CustomerRepository customerRepository;
+
+    // ======================================
+    // =             GET METHOD             =
+    // ======================================
+
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody
+    List<Customer> getAllCustomers() {
+
+        return (List<Customer>) customerRepository.findAll();
+    }
+
+    @GetMapping(path = "/{firstname}")
+    public ResponseEntity<Customer> getUserByUsername(@PathVariable String firstname) {
+
+        return new ResponseEntity<>(customerRepository.findByFirstname(firstname), HttpStatus.OK);
+
+    }
+
+    // ======================================
+    // =             POST METHOD            =
+    // ======================================
+
+    @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customerRequest){
+
+        if(customerRequest == null || customerRequest.getFirstname() == ""){
+            return new ResponseEntity<Customer>(customerRequest, HttpStatus.CREATED);
+        }
+        else{
+            customerRepository.save(customerRequest);
+            return new ResponseEntity<Customer>(customerRequest, HttpStatus.CREATED);
+        }
+    }
+}

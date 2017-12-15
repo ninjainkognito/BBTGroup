@@ -2,6 +2,7 @@ package com.ara.bbtgroup.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -24,9 +25,12 @@ public class Customer {
     private String country;
     private String email;
     private String phonenumber;
-    private Date birth;
+    private String birth;
     private boolean newsletter;
-    private String important_textfield;
+    private String importantTextfield;
+
+    @OneToMany(mappedBy = "ownerOfTheContact")
+    private List<Contact> contacts;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "geolocation_id_fk")
@@ -40,10 +44,10 @@ public class Customer {
         super();
     }
 
-    public Customer(String firstname, String lastname, String address,
-                    String city, Integer zipcode, String country, String email,
-                    String phonenumber, Date birth, boolean newsletter,
-                    String important_textfield, Geolocation customerGeolocation) {
+    public Customer(String firstname, String lastname, String address, String city,
+                    Integer zipcode, String country, String email, String phonenumber,
+                    String birth, boolean newsletter, String importantTextfield,
+                    List<Contact> contacts, Geolocation customerGeolocation) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -54,13 +58,15 @@ public class Customer {
         this.phonenumber = phonenumber;
         this.birth = birth;
         this.newsletter = newsletter;
-        this.important_textfield = important_textfield;
+        this.importantTextfield = importantTextfield;
+        this.contacts = contacts;
         this.customerGeolocation = customerGeolocation;
     }
 
     // ======================================
     // =          Getters & Setters         =
     // ======================================
+
 
     public Integer getCustomerId() {
         return customerId;
@@ -134,11 +140,11 @@ public class Customer {
         this.phonenumber = phonenumber;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
@@ -150,12 +156,20 @@ public class Customer {
         this.newsletter = newsletter;
     }
 
-    public String getImportant_textfield() {
-        return important_textfield;
+    public String getImportantTextfield() {
+        return importantTextfield;
     }
 
-    public void setImportant_textfield(String important_textfield) {
-        this.important_textfield = important_textfield;
+    public void setImportantTextfield(String importantTextfield) {
+        this.importantTextfield = importantTextfield;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     public Geolocation getCustomerGeolocation() {
