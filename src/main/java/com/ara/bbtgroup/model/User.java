@@ -1,6 +1,7 @@
 package com.ara.bbtgroup.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "bbtgroup_user")
@@ -13,11 +14,13 @@ public class User {
     @Id
     @Column(name= "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userId;
+    private Long userId;
 
+    @NotNull
     @Column
     private String username;
 
+    @NotNull
     @Column
     private String password;
 
@@ -34,6 +37,17 @@ public class User {
 
     public User(String username, String password, Employee employeeInformation) {
         this.username = username;
+        this.userId = userId;
+    }
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

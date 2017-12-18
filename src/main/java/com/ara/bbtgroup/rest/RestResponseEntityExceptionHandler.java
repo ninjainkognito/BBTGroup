@@ -1,5 +1,6 @@
 package com.ara.bbtgroup.rest;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +20,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
+    @ExceptionHandler(value = { EmptyResultDataAccessException.class })
+    protected ResponseEntity<Object> handleEmptyDataConflict(RuntimeException ex, WebRequest request) {
+        String bodyOfResponse = "Keine Daten vorhanden mit den gegebenen Parameter!";
+        return handleExceptionInternal(ex, bodyOfResponse,
+                new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
 
 }

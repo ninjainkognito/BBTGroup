@@ -57,10 +57,10 @@ public class UserResource {
 
     @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<User> updateUser(
-            @RequestBody User userRequest) {
+    public ResponseEntity<User> updateUser(@RequestBody User userRequest) {
 
-        return new ResponseEntity<>(new User(), HttpStatus.OK);
+        userRepository.save(userRequest);
+        return new ResponseEntity<User>(userRequest, HttpStatus.OK);
     }
 
     // ======================================
@@ -69,7 +69,6 @@ public class UserResource {
 
     @RequestMapping(path = "/{userId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-
         userRepository.delete(userId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }

@@ -17,7 +17,7 @@ public class Customer {
     @Id
     @Column(name = "customer_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer customerId;
+    private Long customerId;
 
     private String firstname;
     private String lastname;
@@ -65,11 +65,11 @@ public class Customer {
     // ======================================
 
 
-    public Integer getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 

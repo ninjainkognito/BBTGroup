@@ -1,14 +1,10 @@
 package com.ara.bbtgroup.repository;
 
+import com.ara.bbtgroup.model.Geolocation;
 import com.ara.bbtgroup.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
-
-    User findByUsername(String username);
-    User findByUserId(Integer id);
+public interface GeolocationRepository extends CrudRepository<Geolocation, Long> {
 }

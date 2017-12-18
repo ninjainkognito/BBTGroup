@@ -16,25 +16,26 @@ import java.util.List;
 @RequestMapping("/customers")
 public class CustomerResource {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     // ======================================
     // =             GET METHOD             =
     // ======================================
 
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody
-    List<Customer> getAllCustomers() {
+    public @ResponseBody List<Customer> getAllCustomers() {
 
         return (List<Customer>) customerRepository.findAll();
     }
 
     @GetMapping(path = "/{firstname}")
     public ResponseEntity<Customer> getUserByUsername(@PathVariable String firstname) {
-
         return new ResponseEntity<>(customerRepository.findByFirstname(firstname), HttpStatus.OK);
-
     }
 
     // ======================================
@@ -51,5 +52,27 @@ public class CustomerResource {
             customerRepository.save(customerRequest);
             return new ResponseEntity<Customer>(customerRequest, HttpStatus.CREATED);
         }
+    }
+
+    // ======================================
+    // =             PUT METHOD             =
+    // ======================================
+
+    @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customerRequest) {
+        customerRepository.save(customerRequest);
+        return new ResponseEntity<>(customerRequest, HttpStatus.OK);
+    }
+
+    // ======================================
+    // =          DELETE METHOD             =
+    // ======================================
+
+    @RequestMapping(path = "/{customerId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long customerId) {
+
+        customerRepository.delete(customerId);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }

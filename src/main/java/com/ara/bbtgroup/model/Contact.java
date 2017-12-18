@@ -18,13 +18,15 @@ public class Contact {
     private Integer contactId;
 
     private String header;
+
     private String contactType;
 
     @Temporal(TemporalType.DATE)
     private Date date;
 
     @Temporal (TemporalType.TIME)
-    private Time time;
+    private Date time;
+
     private String desription;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,7 +41,7 @@ public class Contact {
         super();
     }
 
-    public Contact(String header, String contactType, Date date, Time time, String desription, Employee ownerOfTheContact) {
+    public Contact(String header, String contactType, Date date, Date time, String desription, Employee ownerOfTheContact) {
         this.header = header;
         this.contactType = contactType;
         this.date = date;
@@ -48,8 +50,9 @@ public class Contact {
         this.ownerOfTheContact = ownerOfTheContact;
     }
 
-
-
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
 
     public Integer getContactId() {
         return contactId;
@@ -83,11 +86,11 @@ public class Contact {
         this.date = date;
     }
 
-    public Time getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

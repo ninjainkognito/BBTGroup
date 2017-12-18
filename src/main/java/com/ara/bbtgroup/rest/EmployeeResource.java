@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(ResourceConstants.EMPLOYEE_V1)
+@RequestMapping("/employee")
 public class EmployeeResource {
 
     @Autowired
@@ -45,5 +45,27 @@ public class EmployeeResource {
 
         employeeRepository.save(employee);
         return new ResponseEntity<>(employee, HttpStatus.CREATED);
+    }
+
+    // ======================================
+    // =             PUT METHOD             =
+    // ======================================
+
+    @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employeeRequest) {
+
+        employeeRepository.save(employeeRequest);
+        return new ResponseEntity<Employee>(employeeRequest, HttpStatus.OK);
+    }
+
+    // ======================================
+    // =          DELETE METHOD             =
+    // ======================================
+
+    @RequestMapping(path = "/{userId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+        employeeRepository.delete(userId);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }

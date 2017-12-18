@@ -17,7 +17,7 @@ public class Employee {
     @Id
     @Column(name= "employee_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer employeeId;
+    private Long employeeId;
 
     private String firstname;
     private String lastname;
@@ -28,7 +28,9 @@ public class Employee {
     private String employeeRole;
     private String email;
     private String phonenumber;
-    private String birthdate;
+
+    @Temporal(TemporalType.DATE)
+    private Date birthdate;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_fk")
@@ -53,7 +55,7 @@ public class Employee {
 
     public Employee(String firstname, String lastname, String adddress,
                     String city, Integer zipcode, String country, String employeeRole,
-                    String email, String phonenumber, String birthdate, User usercredential,
+                    String email, String phonenumber, Date birthdate, User usercredential,
                     List<Task> tasks, List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -75,11 +77,12 @@ public class Employee {
     // =          Getters & Setters         =
     // ======================================
 
-    public Integer getEmployeeId() {
+
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Integer employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -155,11 +158,11 @@ public class Employee {
         this.phonenumber = phonenumber;
     }
 
-    public String getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
 
