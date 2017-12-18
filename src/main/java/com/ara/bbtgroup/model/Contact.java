@@ -19,7 +19,11 @@ public class Contact {
 
     private String header;
     private String contactType;
+
+    @Temporal(TemporalType.DATE)
     private Date date;
+
+    @Temporal (TemporalType.TIME)
     private Time time;
     private String desription;
 
