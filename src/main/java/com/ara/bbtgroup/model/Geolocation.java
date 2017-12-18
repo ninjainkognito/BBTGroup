@@ -13,7 +13,7 @@ public class Geolocation {
     @Id
     @Column(name = "geolocation_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer geolocationId;
+    private Long geolocationId;
 
     private Float latitude;
     private Float longitude;
@@ -35,11 +35,11 @@ public class Geolocation {
     // =          Getters & Setters         =
     // ======================================
 
-    public Integer getGeolocationId() {
-        return geolocationId;
+    public Long getGeolocationId() {
+        return this.geolocationId;
     }
 
-    public void setGeolocationId(Integer geolocationId) {
+    public void setGeolocationId(Long geolocationId) {
         this.geolocationId = geolocationId;
     }
 

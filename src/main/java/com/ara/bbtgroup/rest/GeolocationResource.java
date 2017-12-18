@@ -1,10 +1,9 @@
 package com.ara.bbtgroup.rest;
 
-import com.ara.bbtgroup.model.Employee;
-import com.ara.bbtgroup.model.User;
-import com.ara.bbtgroup.repository.EmployeeRepository;
-import com.ara.bbtgroup.repository.UserRepository;
+import com.ara.bbtgroup.model.Geolocation;
+import com.ara.bbtgroup.repository.GeolocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,26 +13,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee")
-public class EmployeeResource {
+@RequestMapping("/geolocation")
+public class GeolocationResource{
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private GeolocationRepository geolocationRepository;
 
     // ======================================
     // =             GET METHOD             =
     // ======================================
 
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody List<Employee> getAllEmployee() {
+    public @ResponseBody
+    List<Geolocation> getAllGeolocationData() {
 
-        return (List<Employee>) employeeRepository.findAll();
+        return (List<Geolocation>) geolocationRepository.findAll();
     }
 
-    @GetMapping(path = "/{firstname}")
-    public ResponseEntity<Employee> getEmployeeByFirstname(@PathVariable String firstname) {
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Geolocation> getById(@PathVariable String id) {
 
-        return new ResponseEntity<>(employeeRepository.findByFirstname(firstname), HttpStatus.OK);
+        Long temp = Long.valueOf(id).longValue();
+
+        return new ResponseEntity<>(geolocationRepository.findByGeolocationId(temp), HttpStatus.OK);
     }
 
     // ======================================
@@ -41,16 +43,10 @@ public class EmployeeResource {
     // ======================================
 
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
+    public ResponseEntity<Geolocation> createGeolocation(@RequestBody Geolocation geolocationData){
 
-        try {
-            employeeRepository.save(employee);
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-
-        return new ResponseEntity<>(employee, HttpStatus.CREATED);
+        geolocationRepository.save(geolocationData);
+        return new ResponseEntity<Geolocation>(geolocationData, HttpStatus.CREATED);
     }
 
     // ======================================
@@ -59,19 +55,20 @@ public class EmployeeResource {
 
     @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employeeRequest) {
+    public ResponseEntity<Geolocation> updateGeolocationData(@RequestBody Geolocation dataRequest) {
 
-        employeeRepository.save(employeeRequest);
-        return new ResponseEntity<Employee>(employeeRequest, HttpStatus.OK);
+        geolocationRepository.save(dataRequest);
+        return new ResponseEntity<Geolocation>(dataRequest, HttpStatus.OK);
     }
 
     // ======================================
     // =          DELETE METHOD             =
     // ======================================
 
-    @RequestMapping(path = "/{userId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        employeeRepository.delete(userId);
+    @RequestMapping(path = "/{geolocationId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteGeolocationData(@PathVariable Long geolocationId) {
+
+        geolocationRepository.delete(geolocationId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }

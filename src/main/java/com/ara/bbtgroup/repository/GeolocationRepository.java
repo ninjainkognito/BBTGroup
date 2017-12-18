@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GeolocationRepository extends CrudRepository<Geolocation, Long> {
+
+    Geolocation findByGeolocationId(Long id);
 }

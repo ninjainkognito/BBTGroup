@@ -29,8 +29,7 @@ public class Employee {
     private String email;
     private String phonenumber;
 
-    @Temporal(TemporalType.DATE)
-    private Date birthdate;
+    private String birthdate;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id_fk")
@@ -55,7 +54,7 @@ public class Employee {
 
     public Employee(String firstname, String lastname, String adddress,
                     String city, Integer zipcode, String country, String employeeRole,
-                    String email, String phonenumber, Date birthdate, User usercredential,
+                    String email, String phonenumber, String birthdate, User usercredential,
                     List<Task> tasks, List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -158,11 +157,11 @@ public class Employee {
         this.phonenumber = phonenumber;
     }
 
-    public Date getBirthdate() {
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 
