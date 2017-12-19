@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContactRepository extends CrudRepository<Contact, Long> {
+    Contact findByHeader(String header);
 }
