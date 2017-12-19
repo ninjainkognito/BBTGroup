@@ -17,7 +17,7 @@ public class Contact {
     @Id
     @Column(name= "contact_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer contactId;
+    private Long contactId;
 
     private String header;
 
@@ -27,7 +27,7 @@ public class Contact {
     private Date date = new Date();
     
     @Temporal (TemporalType.TIME)
-    private Date time;
+    private Date time = new Date();
 
     private String desription;
 
@@ -54,11 +54,11 @@ public class Contact {
     // =          Getters & Setters         =
     // ======================================
 
-    public Integer getContactId() {
+    public Long getContactId() {
         return contactId;
     }
 
-    public void setContactId(Integer contactId) {
+    public void setContactId(Long contactId) {
         this.contactId = contactId;
     }
 

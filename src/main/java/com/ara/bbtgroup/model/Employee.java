@@ -3,6 +3,7 @@ package com.ara.bbtgroup.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -35,8 +36,8 @@ public class Employee {
     @JoinColumn(name = "user_id_fk")
     private User usercredential;
 
-    @OneToMany(mappedBy = "ownerOfTheTask")
-    private List<Task> tasks;
+    @OneToMany(mappedBy = "ownerOfTheTask", cascade ={CascadeType.PERSIST})
+    private Set<Task> tasks = new HashSet<Task>();
 
     @OneToMany(mappedBy = "ownerOfTheContact")
     private List<Contact> contacts;
@@ -52,10 +53,10 @@ public class Employee {
         super();
     }
 
-    public Employee(String firstname, String lastname, String adddress,
-                    String city, Integer zipcode, String country, String employeeRole,
-                    String email, String phonenumber, String birthdate, User usercredential,
-                    List<Task> tasks, List<Contact> contacts, List<Marketingactivity> marketingactivities) {
+    public Employee(String firstname, String lastname, String adddress, String city,
+                    Integer zipcode, String country, String employeeRole, String email,
+                    String phonenumber, String birthdate, User usercredential, Set<Task> tasks,
+                    List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.adddress = adddress;
@@ -72,7 +73,7 @@ public class Employee {
         this.marketingactivities = marketingactivities;
     }
 
-    // ======================================
+// ======================================
     // =          Getters & Setters         =
     // ======================================
 
@@ -173,11 +174,11 @@ public class Employee {
         this.usercredential = usercredential;
     }
 
-    public List<Task> getTasks() {
+    public Set<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
 

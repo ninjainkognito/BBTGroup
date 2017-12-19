@@ -1,7 +1,8 @@
 package com.ara.bbtgroup.rest;
 
-import com.ara.bbtgroup.model.Contact;
-import com.ara.bbtgroup.repository.ContactRepository;
+import com.ara.bbtgroup.model.Customer;
+import com.ara.bbtgroup.model.Marketingactivity;
+import com.ara.bbtgroup.repository.MarketingactivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,29 +13,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/contacts")
-public class ContactResource {
-
-    // ======================================
-    // =             Attributes             =
-    // ======================================
+@RequestMapping("/marketingactivities")
+public class MarketingactivityResource {
 
     @Autowired
-    private ContactRepository contactRepository;
+    private MarketingactivityRepository marketingactivityRepository;
 
     // ======================================
     // =             GET METHOD             =
     // ======================================
 
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody List<Contact> getAllContacts() {
+    public @ResponseBody List<Marketingactivity> getAllMarketingactivities() {
 
-        return (List<Contact>) contactRepository.findAll();
-    }
-
-    @GetMapping(path = "/{header}")
-    public ResponseEntity<Contact> getContactByHeader(@PathVariable String header) {
-        return new ResponseEntity<>(contactRepository.findByHeader(header), HttpStatus.OK);
+        return (List<Marketingactivity>) marketingactivityRepository.findAll();
     }
 
     // ======================================
@@ -42,10 +34,10 @@ public class ContactResource {
     // ======================================
 
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Contact> createContact(@RequestBody Contact contactRequest){
+    public ResponseEntity<Marketingactivity> createMarketingavtivities(@RequestBody Marketingactivity marketingactivityRequest){
 
-        contactRepository.save(contactRequest);
-        return new ResponseEntity<Contact>(contactRequest, HttpStatus.CREATED);
+        marketingactivityRepository.save(marketingactivityRequest);
+            return new ResponseEntity<Marketingactivity>(marketingactivityRequest, HttpStatus.CREATED);
     }
 
     // ======================================
@@ -54,19 +46,19 @@ public class ContactResource {
 
     @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Contact> updateContact(@RequestBody Contact contactRequest) {
-        contactRepository.save(contactRequest);
-        return new ResponseEntity<>(contactRequest, HttpStatus.OK);
+    public ResponseEntity<Marketingactivity> updateMarketingavtivity(@RequestBody Marketingactivity marketingactivityRequest) {
+        marketingactivityRepository.save(marketingactivityRequest);
+        return new ResponseEntity<>(marketingactivityRequest, HttpStatus.OK);
     }
 
     // ======================================
     // =          DELETE METHOD             =
     // ======================================
 
-    @RequestMapping(path = "/{contactId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteContact(@PathVariable Long contactId) {
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delteMarketingactivity (@PathVariable Long id) {
 
-        contactRepository.delete(contactId);
+        marketingactivityRepository.delete(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }

@@ -1,7 +1,7 @@
 package com.ara.bbtgroup.rest;
 
-import com.ara.bbtgroup.model.Contact;
-import com.ara.bbtgroup.repository.ContactRepository;
+import com.ara.bbtgroup.model.Task;
+import com.ara.bbtgroup.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,29 +12,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/contacts")
-public class ContactResource {
+@RequestMapping("/tasks")
+public class TaskResource {
 
     // ======================================
     // =             Attributes             =
     // ======================================
 
     @Autowired
-    private ContactRepository contactRepository;
+    private TaskRepository taskRepository;
 
     // ======================================
     // =             GET METHOD             =
     // ======================================
 
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody List<Contact> getAllContacts() {
+    public @ResponseBody List<Task> getAllTasks() {
 
-        return (List<Contact>) contactRepository.findAll();
+        return (List<Task>) taskRepository.findAll();
     }
 
     @GetMapping(path = "/{header}")
-    public ResponseEntity<Contact> getContactByHeader(@PathVariable String header) {
-        return new ResponseEntity<>(contactRepository.findByHeader(header), HttpStatus.OK);
+    public ResponseEntity<Task> getTaskByHeader(@PathVariable String header) {
+        return new ResponseEntity<>(taskRepository.findByHeader(header), HttpStatus.OK);
     }
 
     // ======================================
@@ -42,31 +42,30 @@ public class ContactResource {
     // ======================================
 
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Contact> createContact(@RequestBody Contact contactRequest){
+    public ResponseEntity<Task> createTask(@RequestBody Task taskRequest){
 
-        contactRepository.save(contactRequest);
-        return new ResponseEntity<Contact>(contactRequest, HttpStatus.CREATED);
+        taskRepository.save(taskRequest);
+        return new ResponseEntity<Task>(taskRequest, HttpStatus.CREATED);
     }
 
     // ======================================
     // =             PUT METHOD             =
     // ======================================
 
-    @RequestMapping(path = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Contact> updateContact(@RequestBody Contact contactRequest) {
-        contactRepository.save(contactRequest);
-        return new ResponseEntity<>(contactRequest, HttpStatus.OK);
+    @PutMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Task> updateTask(@RequestBody Task taskRequest) {
+        taskRepository.save(taskRequest);
+        return new ResponseEntity<>(taskRequest, HttpStatus.OK);
     }
 
     // ======================================
     // =          DELETE METHOD             =
     // ======================================
 
-    @RequestMapping(path = "/{contactId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteContact(@PathVariable Long contactId) {
+    @DeleteMapping(path = "/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
 
-        contactRepository.delete(contactId);
+        taskRepository.delete(taskId);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }

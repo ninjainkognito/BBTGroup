@@ -19,7 +19,11 @@ public class Task {
     private String header;
     @Column(name = "task_status")
     private boolean taskStatus;
+
+    @Temporal(TemporalType.DATE)
     private Date taskbegin;
+
+    @Temporal(TemporalType.DATE)
     private Date taskend;
     private String description;
 

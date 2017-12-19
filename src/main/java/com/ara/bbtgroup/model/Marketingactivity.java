@@ -14,11 +14,15 @@ public class Marketingactivity {
     @Id
     @Column(name = "marketingactivity_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer marketingactivityId;
+    private Long marketingactivityId;
 
     private String header;
-    private Date generationDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date generationDate = new Date();
+
     private String description;
+
     private boolean status;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,11 +49,11 @@ public class Marketingactivity {
     // =          Getters & Setters         =
     // ======================================
 
-    public Integer getMarketingactivityId() {
+    public Long getMarketingactivityId() {
         return marketingactivityId;
     }
 
-    public void setMarketingactivityId(Integer marketingactivityId) {
+    public void setMarketingactivityId(Long marketingactivityId) {
         this.marketingactivityId = marketingactivityId;
     }
 

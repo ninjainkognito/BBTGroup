@@ -1,6 +1,7 @@
 package com.ara.bbtgroup.rest;
 
 import com.ara.bbtgroup.model.Employee;
+import com.ara.bbtgroup.model.Task;
 import com.ara.bbtgroup.model.User;
 import com.ara.bbtgroup.repository.EmployeeRepository;
 import com.ara.bbtgroup.repository.UserRepository;
@@ -19,6 +20,9 @@ public class EmployeeResource {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     // ======================================
     // =             GET METHOD             =
