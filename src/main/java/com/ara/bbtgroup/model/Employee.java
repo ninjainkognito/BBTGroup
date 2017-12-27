@@ -29,12 +29,11 @@ public class Employee {
     private String employeeRole;
     private String email;
     private String phonenumber;
-
     private String birthdate;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id_fk")
-    private User usercredential;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "ownerOfTheTask", cascade ={CascadeType.PERSIST})
     private Set<Task> tasks = new HashSet<Task>();
@@ -55,7 +54,7 @@ public class Employee {
 
     public Employee(String firstname, String lastname, String adddress, String city,
                     Integer zipcode, String country, String employeeRole, String email,
-                    String phonenumber, String birthdate, User usercredential, Set<Task> tasks,
+                    String phonenumber, String birthdate, User user, Set<Task> tasks,
                     List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -67,7 +66,7 @@ public class Employee {
         this.email = email;
         this.phonenumber = phonenumber;
         this.birthdate = birthdate;
-        this.usercredential = usercredential;
+        this.user = user;
         this.tasks = tasks;
         this.contacts = contacts;
         this.marketingactivities = marketingactivities;
@@ -166,12 +165,12 @@ public class Employee {
         this.birthdate = birthdate;
     }
 
-    public User getUsercredential() {
-        return usercredential;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsercredential(User usercredential) {
-        this.usercredential = usercredential;
+    public void setUsercredential(User user) {
+        this.user = user;
     }
 
     public Set<Task> getTasks() {

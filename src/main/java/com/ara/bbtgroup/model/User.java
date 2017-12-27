@@ -24,8 +24,9 @@ public class User {
     @Column
     private String password;
 
-    @OneToOne(fetch=FetchType.LAZY, mappedBy="usercredential")
-    private Employee employeeInformation;
+    @OneToOne(mappedBy = "user")
+    private Employee employee;
+
 
     // ======================================
     // =            Constructors            =
@@ -35,9 +36,9 @@ public class User {
         super();
     }
 
-    public User(String username, String password, Employee employeeInformation) {
+    public User(String username, String password) {
         this.username = username;
-        this.userId = userId;
+        this.password = password;
     }
     // ======================================
     // =          Getters & Setters         =
@@ -67,11 +68,12 @@ public class User {
         this.password = password;
     }
 
-    public Employee getEmployeeInformation() {
-        return employeeInformation;
+    @OneToOne(mappedBy = "usercredential")
+    public Employee getEmployee() {
+        return employee;
     }
 
     public void setEmployeeInformation(Employee employeeInformation) {
-        this.employeeInformation = employeeInformation;
+        this.employee = employeeInformation;
     }
 }

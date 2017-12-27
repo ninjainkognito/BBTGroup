@@ -4,6 +4,7 @@ package com.ara.bbtgroup.rest;
 import com.ara.bbtgroup.model.User;
 import com.ara.bbtgroup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +31,14 @@ public class UserResource {
     }
 
     @GetMapping(path = "/{username}")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) throws EmptyResultDataAccessException {
 
-        return new ResponseEntity<>(userRepository.findByUsername(username), HttpStatus.OK);
+        if (userRepository.findByUsername(username) == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            return new ResponseEntity<>(userRepository.findByUsername(username), HttpStatus.OK);
+        }
     }
 
     // ======================================

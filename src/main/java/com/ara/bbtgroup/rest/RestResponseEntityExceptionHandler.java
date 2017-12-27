@@ -24,7 +24,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     protected ResponseEntity<Object> handleEmptyDataConflict(RuntimeException ex, WebRequest request) {
         String bodyOfResponse = "Keine Daten vorhanden mit den gegebenen Parameter!";
         return handleExceptionInternal(ex, bodyOfResponse,
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
+                new HttpHeaders(), HttpStatus.NO_CONTENT, request);
     }
 
 }
