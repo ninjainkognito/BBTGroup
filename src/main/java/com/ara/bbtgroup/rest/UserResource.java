@@ -31,7 +31,7 @@ public class UserResource {
     }
 
     @GetMapping(path = "/{username}")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) throws EmptyResultDataAccessException {
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
 
         if (userRepository.findByUsername(username) == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
