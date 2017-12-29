@@ -21,9 +21,6 @@ public class EmployeeResource {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
     // ======================================
     // =             GET METHOD             =
     // ======================================
@@ -46,7 +43,8 @@ public class EmployeeResource {
 
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
-        return new ResponseEntity<>(employee, HttpStatus.CREATED);
+        employeeRepository.save(employee);
+        return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
     }
 
     // ======================================
