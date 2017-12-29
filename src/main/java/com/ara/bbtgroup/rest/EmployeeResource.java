@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeResource {
 
     @Autowired
@@ -46,14 +46,6 @@ public class EmployeeResource {
 
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
-
-        try {
-            employeeRepository.save(employee);
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-
         return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
@@ -66,7 +58,7 @@ public class EmployeeResource {
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employeeRequest) {
 
         employeeRepository.save(employeeRequest);
-        return new ResponseEntity<Employee>(employeeRequest, HttpStatus.OK);
+        return new ResponseEntity<>(employeeRequest, HttpStatus.OK);
     }
 
     // ======================================
@@ -76,6 +68,6 @@ public class EmployeeResource {
     @RequestMapping(path = "/{userId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         employeeRepository.delete(userId);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

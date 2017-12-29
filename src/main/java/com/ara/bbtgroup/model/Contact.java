@@ -31,8 +31,9 @@ public class Contact {
 
     private String desription;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id_fk")
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "employee_id_fk")
+    @ManyToOne
     private Employee ownerOfTheContact;
 
     // ======================================

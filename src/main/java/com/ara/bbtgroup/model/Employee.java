@@ -2,10 +2,7 @@ package com.ara.bbtgroup.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "employee")
@@ -29,16 +26,17 @@ public class Employee {
     private String employeeRole;
     private String email;
     private String phonenumber;
-    private String birthdate;
+    private String birth;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "ownerOfTheTask", cascade ={CascadeType.PERSIST})
-    private Set<Task> tasks = new HashSet<Task>();
+    private Set<Task> tasks = new HashSet<>();
 
-    @OneToMany(mappedBy = "ownerOfTheContact")
+    //@OneToMany(mappedBy = "ownerOfTheContact")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Contact> contacts;
 
     @OneToMany(mappedBy = "ownerOfTheMarketingactivity")
@@ -65,7 +63,7 @@ public class Employee {
         this.employeeRole = employeeRole;
         this.email = email;
         this.phonenumber = phonenumber;
-        this.birthdate = birthdate;
+        this.birth = birthdate;
         this.user = user;
         this.tasks = tasks;
         this.contacts = contacts;
@@ -158,11 +156,11 @@ public class Employee {
     }
 
     public String getBirthdate() {
-        return birthdate;
+        return birth;
     }
 
     public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+        this.birth = birthdate;
     }
 
     public User getUser() {
@@ -183,6 +181,13 @@ public class Employee {
 
     public List<Contact> getContacts() {
         return contacts;
+    }
+
+    public void addContact(Contact contact){
+        if(contact == null){
+            this.contacts = new ArrayList<>();
+        }
+        this.contacts.add(contact);
     }
 
     public void setContacts(List<Contact> contacts) {
