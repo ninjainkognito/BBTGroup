@@ -19,7 +19,7 @@ public class Employee {
 
     private String firstname;
     private String lastname;
-    private String adddress;
+    private String address;
     private String city;
     private Integer zipcode;
     private String country;
@@ -33,7 +33,7 @@ public class Employee {
     private User user;
 
     @OneToMany(mappedBy = "ownerOfTheTask", cascade ={CascadeType.PERSIST})
-    private Set<Task> tasks = new HashSet<Task>();
+    private Set<Task> tasks = new HashSet<>();
 
     //@OneToMany(mappedBy = "ownerOfTheContact")
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -50,13 +50,13 @@ public class Employee {
         super();
     }
 
-    public Employee(String firstname, String lastname, String adddress, String city,
+    public Employee(String firstname, String lastname, String address, String city,
                     Integer zipcode, String country, String employeeRole, String email,
                     String phonenumber, String birth, User user, Set<Task> tasks,
                     List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.adddress = adddress;
+        this.address = address;
         this.city = city;
         this.zipcode = zipcode;
         this.country = country;
@@ -99,12 +99,12 @@ public class Employee {
         this.lastname = lastname;
     }
 
-    public String getAdddress() {
-        return adddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdddress(String adddress) {
-        this.adddress = adddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
