@@ -25,11 +25,10 @@ public class Task {
 
     @Temporal(TemporalType.DATE)
     private Date taskend;
+
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id_fk")
-    private Employee ownerOfTheTask;
+    private Long ownerOfTheTask;
 
     // ======================================
     // =            Constructors            =
@@ -39,7 +38,7 @@ public class Task {
         super();
     }
 
-    public Task(String header, boolean taskStatus, Date taskbegin, Date taskend, String description, Employee ownerOfTheTask) {
+    public Task(String header, boolean taskStatus, Date taskbegin, Date taskend, String description, Long ownerOfTheTask) {
         this.header = header;
         this.taskStatus = taskStatus;
         this.taskbegin = taskbegin;
@@ -100,11 +99,11 @@ public class Task {
         this.description = description;
     }
 
-    public Employee getOwnerOfTheTask() {
+    public Long getOwnerOfTheTask() {
         return ownerOfTheTask;
     }
 
-    public void setOwnerOfTheTask(Employee ownerOfTheTask) {
+    public void setOwnerOfTheTask(Long ownerOfTheTask) {
         this.ownerOfTheTask = ownerOfTheTask;
     }
 }

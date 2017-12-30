@@ -9,7 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.xml.ws.Response;
+import java.util.*;
 
 @Controller
 @RequestMapping("/tasks")
@@ -32,9 +33,10 @@ public class TaskResource {
         return (List<Task>) taskRepository.findAll();
     }
 
-    @GetMapping(path = "/{header}")
-    public ResponseEntity<Task> getTaskByHeader(@PathVariable String header) {
-        return new ResponseEntity<>(taskRepository.findByHeader(header), HttpStatus.OK);
+    @GetMapping(path = "/{ownerOfTheTask}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody List<Task> getTaskByOwnerId(@PathVariable String ownerOfTheTask) {
+
+        return taskRepository.findAllByOwnerOfTheTask(ownerOfTheTask);
     }
 
     // ======================================

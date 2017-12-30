@@ -32,8 +32,10 @@ public class Employee {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "ownerOfTheTask", cascade ={CascadeType.PERSIST})
-    private Set<Task> tasks = new HashSet<>();
+    /*
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<Task> tasks;
+    */
 
     //@OneToMany(mappedBy = "ownerOfTheContact")
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -52,7 +54,7 @@ public class Employee {
 
     public Employee(String firstname, String lastname, String address, String city,
                     Integer zipcode, String country, String employeeRole, String email,
-                    String phonenumber, String birth, User user, Set<Task> tasks,
+                    String phonenumber, String birth, User user,
                     List<Contact> contacts, List<Marketingactivity> marketingactivities) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -65,7 +67,6 @@ public class Employee {
         this.phonenumber = phonenumber;
         this.birth = birth;
         this.user = user;
-        this.tasks = tasks;
         this.contacts = contacts;
         this.marketingactivities = marketingactivities;
     }
@@ -171,16 +172,29 @@ public class Employee {
         this.user = user;
     }
 
-    public Set<Task> getTasks() {
+    /*
+    public List<Task> getTasks() {
         return tasks;
     }
 
-    public void setTasks(Set<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 
+    public void addTask(Task task){
+        if(task == null){
+            this.tasks = new ArrayList<>();
+        }
+        this.tasks.add(task);
+    }
+    */
+
     public List<Contact> getContacts() {
         return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     public void addContact(Contact contact){
@@ -188,10 +202,6 @@ public class Employee {
             this.contacts = new ArrayList<>();
         }
         this.contacts.add(contact);
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
     }
 
     public List<Marketingactivity> getMarketingactivities() {

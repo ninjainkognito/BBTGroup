@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Controller
@@ -22,6 +23,10 @@ public class CustomerResource {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private EntityManager em;
+
 
     // ======================================
     // =             GET METHOD             =
