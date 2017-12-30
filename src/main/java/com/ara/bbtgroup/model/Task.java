@@ -17,8 +17,8 @@ public class Task {
     private Long taskId;
 
     private String header;
-    @Column(name = "task_status")
-    private boolean taskStatus;
+
+    private Long taskStatus;
 
     @Temporal(TemporalType.DATE)
     private Date taskbegin;
@@ -38,7 +38,7 @@ public class Task {
         super();
     }
 
-    public Task(String header, boolean taskStatus, Date taskbegin, Date taskend, String description, Long ownerOfTheTask) {
+    public Task(String header, Long taskStatus, Date taskbegin, Date taskend, String description, Long ownerOfTheTask) {
         this.header = header;
         this.taskStatus = taskStatus;
         this.taskbegin = taskbegin;
@@ -67,11 +67,11 @@ public class Task {
         this.header = header;
     }
 
-    public boolean isTaskStatus() {
+    public Long isTaskStatus() {
         return taskStatus;
     }
 
-    public void setTaskStatus(boolean taskStatus) {
+    public void setTaskStatus(Long taskStatus) {
         this.taskStatus = taskStatus;
     }
 

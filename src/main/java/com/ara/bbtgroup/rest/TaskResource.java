@@ -39,6 +39,26 @@ public class TaskResource {
         return taskRepository.findAllByOwnerOfTheTask(ownerOfTheTask);
     }
 
+    @GetMapping(path = "/todo/{ownerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody List<Task> getAllDTodoTaskByUserId(@PathVariable String ownerId) {
+
+        return taskRepository.findAllByOwnerOfTheTaskAndTaskStatusIsEqualToTodo(ownerId);
+    }
+
+    @GetMapping(path = "/progress/{ownerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody List<Task> getAllProgressTaskByUserId(@PathVariable String ownerId) {
+
+        return taskRepository.findAllByOwnerOfTheTaskAndTaskStatusIsEqualToProgress(ownerId);
+    }
+
+    @GetMapping(path = "/done/{ownerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody List<Task> getAllDoneTaskByUserId(@PathVariable String ownerId) {
+
+        return taskRepository.findAllByOwnerOfTheTaskAndTaskStatusIsEqualToDone(ownerId);
+    }
+
+
+
     // ======================================
     // =             POST METHOD            =
     // ======================================
