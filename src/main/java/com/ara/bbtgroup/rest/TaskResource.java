@@ -33,7 +33,14 @@ public class TaskResource {
         return (List<Task>) taskRepository.findAll();
     }
 
-    @GetMapping(path = "/{ownerOfTheTask}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "/{taskId}")
+    public ResponseEntity<Task> getById(@PathVariable String taskId) {
+        Long temp = Long.valueOf(taskId).longValue();
+
+        return new ResponseEntity<>(taskRepository.findByTaskId(temp), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/owner/{ownerOfTheTask}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody List<Task> getTaskByOwnerId(@PathVariable String ownerOfTheTask) {
 
         return taskRepository.findAllByOwnerOfTheTask(ownerOfTheTask);

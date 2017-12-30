@@ -23,4 +23,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     @Query(value = "select * from Task where owner_of_the_task = ?1 AND task_status = '3'", nativeQuery = true)
     List<Task> findAllByOwnerOfTheTaskAndTaskStatusIsEqualToDone(String ownerId);
+
+    Task findByTaskId(Long taskId);
 }
