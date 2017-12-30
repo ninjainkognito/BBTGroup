@@ -67,7 +67,7 @@ public class Task {
         this.header = header;
     }
 
-    public Long isTaskStatus() {
+    public Long getTaskStatus() {
         return taskStatus;
     }
 
