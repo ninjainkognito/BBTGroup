@@ -1,5 +1,7 @@
 package com.ara.bbtgroup.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,9 +18,10 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long taskId;
 
-    private String header;
+    private String title;
 
-    private Long taskStatus;
+    @Range(min = 1, max = 3)
+    private int taskStatus;
 
     @Temporal(TemporalType.DATE)
     private Date taskbegin;
@@ -38,8 +41,8 @@ public class Task {
         super();
     }
 
-    public Task(String header, Long taskStatus, Date taskbegin, Date taskend, String description, Long ownerOfTheTask) {
-        this.header = header;
+    public Task(String title, int taskStatus, Date taskbegin, Date taskend, String description, Long ownerOfTheTask) {
+        this.title = title;
         this.taskStatus = taskStatus;
         this.taskbegin = taskbegin;
         this.taskend = taskend;
@@ -59,19 +62,19 @@ public class Task {
         this.taskId = taskId;
     }
 
-    public String getHeader() {
-        return header;
+    public String getTitle() {
+        return title;
     }
 
-    public void setHeader(String header) {
-        this.header = header;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Long getTaskStatus() {
+    public int getTaskStatus() {
         return taskStatus;
     }
 
-    public void setTaskStatus(Long taskStatus) {
+    public void setTaskStatus(int taskStatus) {
         this.taskStatus = taskStatus;
     }
 

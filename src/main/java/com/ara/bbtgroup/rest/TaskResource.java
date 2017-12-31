@@ -30,7 +30,7 @@ public class TaskResource {
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody List<Task> getAllTasks() {
 
-        return (List<Task>) taskRepository.findAll();
+        return taskRepository.findAll();
     }
 
     @GetMapping(path = "/{taskId}")
@@ -74,7 +74,7 @@ public class TaskResource {
     public ResponseEntity<Task> createTask(@RequestBody Task taskRequest){
 
         taskRepository.save(taskRequest);
-        return new ResponseEntity<Task>(taskRequest, HttpStatus.CREATED);
+        return new ResponseEntity<>(taskRequest, HttpStatus.CREATED);
     }
 
     // ======================================
@@ -95,6 +95,6 @@ public class TaskResource {
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
 
         taskRepository.delete(taskId);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
