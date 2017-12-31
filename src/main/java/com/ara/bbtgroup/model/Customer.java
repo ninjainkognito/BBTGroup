@@ -3,6 +3,7 @@ package com.ara.bbtgroup.model;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class Customer {
     private boolean newsletter;
     private String importantTextfield;
 
-    @OneToMany(mappedBy = "ownerOfTheContact")
-    private List<Contact> contacts;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Contact> contacts = new ArrayList<Contact>();
 
     // ======================================
     // =            Constructors            =
@@ -44,8 +45,7 @@ public class Customer {
 
     public Customer(String firstname, String lastname, String address, String city,
                     Integer zipcode, String country, String email, String phonenumber,
-                    String birth, boolean newsletter, String importantTextfield,
-                    List<Contact> contacts) {
+                    String birth, boolean newsletter, String importantTextfield) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -57,7 +57,6 @@ public class Customer {
         this.birth = birth;
         this.newsletter = newsletter;
         this.importantTextfield = importantTextfield;
-        this.contacts = contacts;
     }
 
     // ======================================

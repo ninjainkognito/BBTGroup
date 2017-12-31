@@ -20,6 +20,8 @@ public class Task {
 
     private String title;
 
+    private String description;
+
     @Range(min = 1, max = 3)
     private int taskStatus;
 
@@ -28,8 +30,6 @@ public class Task {
 
     @Temporal(TemporalType.DATE)
     private Date taskend;
-
-    private String description;
 
     private Long ownerOfTheTask;
 
@@ -41,12 +41,12 @@ public class Task {
         super();
     }
 
-    public Task(String title, int taskStatus, Date taskbegin, Date taskend, String description, Long ownerOfTheTask) {
+    public Task(String title, String description, int taskStatus, Date taskbegin, Date taskend, Long ownerOfTheTask) {
         this.title = title;
+        this.description = description;
         this.taskStatus = taskStatus;
         this.taskbegin = taskbegin;
         this.taskend = taskend;
-        this.description = description;
         this.ownerOfTheTask = ownerOfTheTask;
     }
 

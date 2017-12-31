@@ -12,6 +12,9 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
+    // All methods in a Interface are public
+    // pubilc declaration of the methods are useless
+
     @Query(value = "select * from Task where owner_of_the_task = ?1", nativeQuery = true)
     List<Task> findAllByOwnerOfTheTask(String ownerOfTheTask);
 

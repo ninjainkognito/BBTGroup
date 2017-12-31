@@ -31,10 +31,11 @@ public class Contact {
 
     private String desription;
 
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "employee_id_fk")
     @ManyToOne
-    private Employee ownerOfTheContact;
+    private Employee employee;
+
+    @ManyToOne
+    private Customer customer;
 
     // ======================================
     // =            Constructors            =
@@ -44,11 +45,12 @@ public class Contact {
         super();
     }
 
-    public Contact(String header, String contactType, String desription, Employee ownerOfTheContact) {
+    public Contact(String header, String contactType, String desription, Employee employee, Customer customer) {
         this.header = header;
         this.contactType = contactType;
         this.desription = desription;
-        this.ownerOfTheContact = ownerOfTheContact;
+        this.employee = employee;
+        this.customer = customer;
     }
 
     // ======================================
@@ -103,11 +105,19 @@ public class Contact {
         this.desription = desription;
     }
 
-    public Employee getOwnerOfTheContact() {
-        return ownerOfTheContact;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setOwnerOfTheContact(Employee ownerOfTheContact) {
-        this.ownerOfTheContact = ownerOfTheContact;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
