@@ -1,6 +1,7 @@
 package com.ara.bbtgroup.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -31,11 +32,17 @@ public class Contact {
 
     private String desription;
 
-    @ManyToOne
-    private Employee employee;
+    @Range(min = 1)
+    private int employeId;
 
-    @ManyToOne
-    private Customer customer;
+    // @ManyToOne
+    // private Employee employee;
+
+    @Range(min = 1)
+    private int customerId;
+
+    // @ManyToOne
+    // private Customer customer;
 
     // ======================================
     // =            Constructors            =
@@ -45,12 +52,10 @@ public class Contact {
         super();
     }
 
-    public Contact(String header, String contactType, String desription, Employee employee, Customer customer) {
+    public Contact(String header, String contactType, String desription) {
         this.header = header;
         this.contactType = contactType;
-        this.desription = desription;
-        this.employee = employee;
-        this.customer = customer;
+        this.desription = desription;;
     }
 
     // ======================================
@@ -105,19 +110,19 @@ public class Contact {
         this.desription = desription;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public int getEmployeId() {
+        return employeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeId(int employeId) {
+        this.employeId = employeId;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 }

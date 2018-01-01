@@ -29,6 +29,12 @@ public class MarketingactivityResource {
         return (List<Marketingactivity>) marketingactivityRepository.findAll();
     }
 
+    @GetMapping(path = "/{employeeid}")
+    public @ResponseBody List<Marketingactivity> getAllByEmployeeId(@PathVariable Integer employeeid) {
+
+        return marketingactivityRepository.getAllByEmployeeId(employeeid);
+    }
+
     // ======================================
     // =             POST METHOD            =
     // ======================================

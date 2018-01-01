@@ -24,9 +24,6 @@ public class CustomerResource {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private EntityManager em;
-
 
     // ======================================
     // =             GET METHOD             =
@@ -41,6 +38,17 @@ public class CustomerResource {
     @GetMapping(path = "/{firstname}")
     public ResponseEntity<Customer> getUserByUsername(@PathVariable String firstname) {
         return new ResponseEntity<>(customerRepository.findByFirstname(firstname), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/countries")
+    public @ResponseBody List<Customer> getAllCountries(){
+        return customerRepository.getAllSortByCountry();
+    }
+
+    @GetMapping(path = "/country/{country}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody List<Customer> getAllDTodoTaskByUserId(@PathVariable String country) {
+
+        return customerRepository.findCustomerByCountry(country);
     }
 
     // ======================================

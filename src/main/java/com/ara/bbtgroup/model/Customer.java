@@ -1,5 +1,6 @@
 package com.ara.bbtgroup.model;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
@@ -32,8 +33,9 @@ public class Customer {
     private boolean newsletter;
     private String importantTextfield;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Contact> contacts = new ArrayList<Contact>();
+    // @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // private List<Contact> contacts = new ArrayList<Contact>();
+
 
     // ======================================
     // =            Constructors            =
@@ -158,13 +160,5 @@ public class Customer {
 
     public void setImportantTextfield(String importantTextfield) {
         this.importantTextfield = importantTextfield;
-    }
-
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
     }
 }

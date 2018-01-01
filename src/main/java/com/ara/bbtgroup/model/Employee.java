@@ -37,11 +37,11 @@ public class Employee {
     private List<Task> tasks;
     */
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Contact> contacts = new ArrayList<Contact>();
+    // @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    // private List<Contact> contacts = new ArrayList<Contact>();
 
-    @OneToMany(mappedBy = "ownerOfTheMarketingactivity")
-    private List<Marketingactivity> marketingactivities;
+    // @OneToMany(mappedBy = "ownerOfTheMarketingactivity")
+    // private List<Marketingactivity> marketingactivities;
 
     // ======================================
     // =            Constructors            =
@@ -53,7 +53,7 @@ public class Employee {
 
     public Employee(String firstname, String lastname, String address, String city,
                     Integer zipcode, String country, String employeeRole, String email,
-                    String phonenumber, String birth, User user, List<Marketingactivity> marketingactivities) {
+                    String phonenumber, String birth, User user) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -65,7 +65,6 @@ public class Employee {
         this.phonenumber = phonenumber;
         this.birth = birth;
         this.user = user;
-        this.marketingactivities = marketingactivities;
     }
 
 // ======================================
@@ -167,28 +166,5 @@ public class Employee {
 
     public void setUsercredential(User user) {
         this.user = user;
-    }
-
-    public List<Contact> getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
-    }
-
-    public void addContact(Contact contact){
-        if(contact == null){
-            this.contacts = new ArrayList<>();
-        }
-        this.contacts.add(contact);
-    }
-
-    public List<Marketingactivity> getMarketingactivities() {
-        return marketingactivities;
-    }
-
-    public void setMarketingactivities(List<Marketingactivity> marketingactivities) {
-        this.marketingactivities = marketingactivities;
     }
 }

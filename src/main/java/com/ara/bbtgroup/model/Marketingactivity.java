@@ -12,22 +12,26 @@ public class Marketingactivity {
     // ======================================
 
     @Id
-    @Column(name = "marketingactivity_id", nullable = false)
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long marketingactivityId;
 
-    private String header;
+    private String title;
+
+    private String extraInfo;
+
+    private String comment;
 
     @Temporal(TemporalType.DATE)
-    private Date generationDate = new Date();
+    private Date startDate = new Date();
 
-    private String description;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
 
     private boolean status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id_fk")
-    private Employee ownerOfTheMarketingactivity;
+    private int employeeId;
+
 
     // ======================================
     // =            Constructors            =
@@ -37,17 +41,21 @@ public class Marketingactivity {
         super();
     }
 
-    public Marketingactivity(String header, Date generationDate, String description, boolean status, Employee ownerOfTheMarketingactivity) {
-        this.header = header;
-        this.generationDate = generationDate;
-        this.description = description;
+    public Marketingactivity(String title, String extraInfo, String comment,
+                             Date startDate, Date endDate, boolean status, int employeeId) {
+        this.title = title;
+        this.extraInfo = extraInfo;
+        this.comment = comment;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = status;
-        this.ownerOfTheMarketingactivity = ownerOfTheMarketingactivity;
+        this.employeeId = employeeId;
     }
 
     // ======================================
     // =          Getters & Setters         =
     // ======================================
+
 
     public Long getMarketingactivityId() {
         return marketingactivityId;
@@ -57,28 +65,44 @@ public class Marketingactivity {
         this.marketingactivityId = marketingactivityId;
     }
 
-    public String getHeader() {
-        return header;
+    public String getTitle() {
+        return title;
     }
 
-    public void setHeader(String header) {
-        this.header = header;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Date getGenerationDate() {
-        return generationDate;
+    public String getExtraInfo() {
+        return extraInfo;
     }
 
-    public void setGenerationDate(Date generationDate) {
-        this.generationDate = generationDate;
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
     }
 
-    public String getDescription() {
-        return description;
+    public String getComment() {
+        return comment;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public boolean isStatus() {
@@ -89,11 +113,11 @@ public class Marketingactivity {
         this.status = status;
     }
 
-    public Employee getOwnerOfTheMarketingactivity() {
-        return ownerOfTheMarketingactivity;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setOwnerOfTheMarketingactivity(Employee ownerOfTheMarketingactivity) {
-        this.ownerOfTheMarketingactivity = ownerOfTheMarketingactivity;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 }
