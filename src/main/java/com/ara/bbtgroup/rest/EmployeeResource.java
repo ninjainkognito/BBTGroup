@@ -37,6 +37,12 @@ public class EmployeeResource {
         return new ResponseEntity<>(employeeRepository.findByFirstname(firstname), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/country/{country}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public @ResponseBody List<Employee> findEmployeeByCountry(@PathVariable String country) {
+
+        return employeeRepository.findEmployeeByCountry(country);
+    }
+
     // ======================================
     // =             POST METHOD            =
     // ======================================
