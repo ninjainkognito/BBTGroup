@@ -11,8 +11,6 @@ import java.util.List;
 @Repository
 public interface MarketingactivityRepository extends CrudRepository<Marketingactivity, Long> {
 
-    List<Marketingactivity> getAllByEmployeeId(Integer employeeid);
-
     @Query(value = "select * from dbo.marketingactivity where employee_id = ?1 AND status = '1'", nativeQuery = true)
     List<Marketingactivity> getAllByEmployeeIdAndStatusEqualsTodo(String ownerId);
 

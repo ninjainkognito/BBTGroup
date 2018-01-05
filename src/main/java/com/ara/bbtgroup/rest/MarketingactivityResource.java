@@ -29,6 +29,12 @@ public class MarketingactivityResource {
         return (List<Marketingactivity>) marketingactivityRepository.findAll();
     }
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Marketingactivity> getMarketingActivityById(@PathVariable Long id){
+
+        return new ResponseEntity<>(marketingactivityRepository.findOne(id), HttpStatus.OK);
+    }
+
     @GetMapping(path = "/active/{ownerId}")
     public @ResponseBody List<Marketingactivity> getAllActiveJobsByEmployeeId(@PathVariable String ownerId) {
 
