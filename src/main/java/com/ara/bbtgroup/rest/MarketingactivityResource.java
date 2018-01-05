@@ -29,10 +29,22 @@ public class MarketingactivityResource {
         return (List<Marketingactivity>) marketingactivityRepository.findAll();
     }
 
-    @GetMapping(path = "/todo/{employeeid}")
-    public @ResponseBody List<Marketingactivity> getAllByEmployeeId(@PathVariable Integer employeeid) {
+    @GetMapping(path = "/active/{ownerId}")
+    public @ResponseBody List<Marketingactivity> getAllActiveJobsByEmployeeId(@PathVariable String ownerId) {
 
-        return marketingactivityRepository.getAllByEmployeeId(employeeid);
+        return marketingactivityRepository.getAllByEmployeeIdAndStatusEqualsTodo(ownerId);
+    }
+
+    @GetMapping(path = "/progress/{ownerId}")
+    public @ResponseBody List<Marketingactivity> getAllProgressJobsByEmployeeId(@PathVariable String ownerId) {
+
+        return marketingactivityRepository.getAllByEmployeeIdAndStatusEqualsInProgress(ownerId);
+    }
+
+    @GetMapping(path = "/completed/{ownerId}")
+    public @ResponseBody List<Marketingactivity> getAllDoneJobsByEmployeeId(@PathVariable String ownerId) {
+
+        return marketingactivityRepository.getAllByEmployeeIdAndStatusEqualsCompleted(ownerId);
     }
 
     // ======================================

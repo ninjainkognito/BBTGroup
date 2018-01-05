@@ -14,6 +14,12 @@ public interface MarketingactivityRepository extends CrudRepository<Marketingact
     List<Marketingactivity> getAllByEmployeeId(Integer employeeid);
 
     @Query(value = "select * from dbo.marketingactivity where employee_id = ?1 AND status = '1'", nativeQuery = true)
-    List<Marketingactivity> getAllByEmployeeIdAndStatusEqualsTodo(Integer employeeid);
+    List<Marketingactivity> getAllByEmployeeIdAndStatusEqualsTodo(String ownerId);
+
+    @Query(value = "select * from dbo.marketingactivity where employee_id = ?1 AND status = '2'", nativeQuery = true)
+    List<Marketingactivity> getAllByEmployeeIdAndStatusEqualsInProgress(String ownerId);
+
+    @Query(value = "select * from dbo.marketingactivity where employee_id = ?1 AND status = '3'", nativeQuery = true)
+    List<Marketingactivity> getAllByEmployeeIdAndStatusEqualsCompleted(String ownerId);
 
 }
