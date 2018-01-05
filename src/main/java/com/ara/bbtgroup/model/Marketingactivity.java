@@ -1,5 +1,7 @@
 package com.ara.bbtgroup.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -28,7 +30,8 @@ public class Marketingactivity {
     @Temporal(TemporalType.DATE)
     private Date endDate;
 
-    private boolean status;
+    @Range(min = 1, max = 3)
+    private int status;
 
     private int employeeId;
 
@@ -42,7 +45,7 @@ public class Marketingactivity {
     }
 
     public Marketingactivity(String title, String extraInfo, String comment,
-                             Date startDate, Date endDate, boolean status, int employeeId) {
+                             Date startDate, Date endDate, int status, int employeeId) {
         this.title = title;
         this.extraInfo = extraInfo;
         this.comment = comment;
@@ -105,11 +108,11 @@ public class Marketingactivity {
         this.endDate = endDate;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

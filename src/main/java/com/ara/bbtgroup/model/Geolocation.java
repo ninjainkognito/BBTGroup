@@ -10,13 +10,15 @@ public class Geolocation {
     // =             Attributes             =
     // ======================================
 
+    // AIzaSyBF_iPPbbY7UgRGc11Az2XnF2YAJSak2OY
+
     @Id
     @Column(name = "geolocation_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long geolocationId;
 
-    private Float latitude;
-    private Float longitude;
+    private String latleng;
+    private String name;
 
     // ======================================
     // =            Constructors            =
@@ -26,9 +28,9 @@ public class Geolocation {
         super();
     }
 
-    public Geolocation(Float latitude, Float longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public Geolocation(String latleng, String name) {
+        this.latleng = latleng;
+        this.name = name;
     }
 
     // ======================================
@@ -43,20 +45,19 @@ public class Geolocation {
         this.geolocationId = geolocationId;
     }
 
-    public Float getLatitude() {
-        return latitude;
+    public String getLatleng() {
+        return latleng;
     }
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
+    public void setLatleng(String latleng) {
+        this.latleng = latleng;
     }
 
-    public Float getLongitude() {
-        return longitude;
+    public String getName() {
+        return name;
     }
 
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
+    public void setName(String name) {
+        this.name = name;
     }
-
 }

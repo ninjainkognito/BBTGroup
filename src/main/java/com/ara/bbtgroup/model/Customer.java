@@ -45,9 +45,10 @@ public class Customer {
         super();
     }
 
-    public Customer(String firstname, String lastname, String address, String city,
-                    Integer zipcode, String country, String email, String phonenumber,
-                    String birth, boolean newsletter, String importantTextfield) {
+    public Customer(String firstname, String lastname, String address,
+                    String city, Integer zipcode, String country,
+                    String email, String phonenumber, String birth,
+                    boolean newsletter, String importantTextfield) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
