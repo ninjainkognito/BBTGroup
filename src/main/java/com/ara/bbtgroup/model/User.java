@@ -24,10 +24,6 @@ public class User {
     @Column
     private String password;
 
-    @OneToOne(mappedBy = "user")
-    private Employee employee;
-
-
     // ======================================
     // =            Constructors            =
     // ======================================
@@ -43,6 +39,7 @@ public class User {
     // ======================================
     // =          Getters & Setters         =
     // ======================================
+
 
     public Long getUserId() {
         return userId;
@@ -66,14 +63,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @OneToOne(mappedBy = "usercredential")
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployeeInformation(Employee employeeInformation) {
-        this.employee = employeeInformation;
     }
 }

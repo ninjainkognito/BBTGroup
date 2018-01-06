@@ -20,4 +20,6 @@ public interface MarketingactivityRepository extends CrudRepository<Marketingact
     @Query(value = "select * from dbo.marketingactivity where employee_id = ?1 AND status = '3'", nativeQuery = true)
     List<Marketingactivity> getAllByEmployeeIdAndStatusEqualsCompleted(String ownerId);
 
+    @Query(value = "SELECT * FROM dbo.marketingactivity WHERE start_date >= ?1 AND end_date <= ?2 AND employee_id = ?3 AND status = ?4", nativeQuery = true)
+    List<Marketingactivity> getAllByDate(String begin, String end, int id, int status);
 }

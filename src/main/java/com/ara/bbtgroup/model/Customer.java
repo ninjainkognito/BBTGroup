@@ -33,10 +33,6 @@ public class Customer {
     private boolean newsletter;
     private String importantTextfield;
 
-    // @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    // private List<Contact> contacts = new ArrayList<Contact>();
-
-
     // ======================================
     // =            Constructors            =
     // ======================================
@@ -45,10 +41,10 @@ public class Customer {
         super();
     }
 
-    public Customer(String firstname, String lastname, String address,
-                    String city, Integer zipcode, String country,
-                    String email, String phonenumber, String birth,
-                    boolean newsletter, String importantTextfield) {
+    public Customer(String firstname, String lastname,
+                    String address, String city, Integer zipcode,
+                    String country, String email, String phonenumber,
+                    String birth, boolean newsletter, String importantTextfield) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -65,7 +61,6 @@ public class Customer {
     // ======================================
     // =          Getters & Setters         =
     // ======================================
-
 
     public Long getCustomerId() {
         return customerId;

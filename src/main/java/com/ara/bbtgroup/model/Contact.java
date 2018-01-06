@@ -35,14 +35,8 @@ public class Contact {
     @Range(min = 1)
     private int employeId;
 
-    // @ManyToOne
-    // private Employee employee;
-
     @Range(min = 1)
     private int customerId;
-
-    // @ManyToOne
-    // private Customer customer;
 
     // ======================================
     // =            Constructors            =
@@ -52,10 +46,16 @@ public class Contact {
         super();
     }
 
-    public Contact(String header, String contactType, String desription) {
+    public Contact(String header, String contactType,
+                   Date date, Date time, String desription,
+                   int employeId, int customerId) {
         this.header = header;
         this.contactType = contactType;
-        this.desription = desription;;
+        this.date = date;
+        this.time = time;
+        this.desription = desription;
+        this.employeId = employeId;
+        this.customerId = customerId;
     }
 
     // ======================================

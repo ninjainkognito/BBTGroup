@@ -53,6 +53,14 @@ public class MarketingactivityResource {
         return marketingactivityRepository.getAllByEmployeeIdAndStatusEqualsCompleted(ownerId);
     }
 
+    @GetMapping(path = "/begin/{begin}/end/{end}/id/{id}/status/{status}")
+    public @ResponseBody List<Marketingactivity> getAllBetweenDate(@PathVariable String begin,
+                                                                   @PathVariable String end,
+                                                                   @PathVariable int id,
+                                                                   @PathVariable int status){
+        return marketingactivityRepository.getAllByDate(begin, end, id, status);
+    }
+
     // ======================================
     // =             POST METHOD            =
     // ======================================

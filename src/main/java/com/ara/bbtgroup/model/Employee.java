@@ -27,21 +27,7 @@ public class Employee {
     private String email;
     private String phonenumber;
     private String birth;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    /*
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Task> tasks;
-    */
-
-    // @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    // private List<Contact> contacts = new ArrayList<Contact>();
-
-    // @OneToMany(mappedBy = "ownerOfTheMarketingactivity")
-    // private List<Marketingactivity> marketingactivities;
+    private int userCredentials;
 
     // ======================================
     // =            Constructors            =
@@ -51,9 +37,10 @@ public class Employee {
         super();
     }
 
-    public Employee(String firstname, String lastname, String address, String city,
-                    Integer zipcode, String country, String employeeRole, String email,
-                    String phonenumber, String birth, User user) {
+    public Employee(String firstname, String lastname,
+                    String address, String city, Integer zipcode,
+                    String country, String employeeRole, String email,
+                    String phonenumber, String birth, int userCredentials) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
@@ -64,7 +51,7 @@ public class Employee {
         this.email = email;
         this.phonenumber = phonenumber;
         this.birth = birth;
-        this.user = user;
+        this.userCredentials = userCredentials;
     }
 
 // ======================================
@@ -152,19 +139,19 @@ public class Employee {
         this.phonenumber = phonenumber;
     }
 
-    public String getBirthdate() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirthdate(String birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserCredentials() {
+        return userCredentials;
     }
 
-    public void setUsercredential(User user) {
-        this.user = user;
+    public void setUserCredentials(int userCredentials) {
+        this.userCredentials = userCredentials;
     }
 }
