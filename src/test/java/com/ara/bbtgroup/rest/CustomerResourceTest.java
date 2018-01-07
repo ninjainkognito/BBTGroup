@@ -66,7 +66,7 @@ public class CustomerResourceTest {
                         "078 0000000", "19900-01-01", false,""));
 
         // check if data successfully written into database
-        assertEquals(java.util.Optional.ofNullable(custRepo.findOne(customer.getCustomerId()).getZipcode()), 1234);
+        assertTrue(custRepo.findOne(customer.getCustomerId()).getZipcode() == 1234);
 
         Long lastInsertJob = custRepo.findOne(customer.getCustomerId()).getCustomerId();
 
@@ -88,6 +88,6 @@ public class CustomerResourceTest {
 
         custRepo.save(foundCustomer);
 
-        assertEquals(java.util.Optional.of(987654321), custRepo.findOne(customer.getCustomerId()).getZipcode());
+        assertTrue(custRepo.findOne(customer.getCustomerId()).getZipcode() == 987654321);
     }
 }

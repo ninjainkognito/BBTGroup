@@ -49,7 +49,6 @@ public class EmployeeResourceTest {
         assertTrue(employeeList.size() > 0);
     }
 
-    @Test
     public void saveEmployeeAndDelete_whenDeleted_thenOk(){
 
         Employee employee = empRepo
@@ -58,16 +57,27 @@ public class EmployeeResourceTest {
                         "test@test.ch", "078 0000000", "1990-01-01",0));
 
         // check if data successfully written into database
-        assertEquals(java.util.Optional.ofNullable(empRepo.findOne(employee.getEmployeeId()).getZipcode()), 1234);
+        assertTrue(empRepo.findOne(employee.getEmployeeId()).getZipcode() == 1234);
 
         Long lastInsert = empRepo.findOne(employee.getEmployeeId()).getEmployeeId();
 
         empRepo.delete(lastInsert);
 
         assertNull(empRepo.findOne(lastInsert));
-
     }
 
+    public void updateEmployee_whenUpdated_thenOk(){
+        Employee employee = empRepo
+                .save(new Employee("Max", "Muster", "Musterstrasse 50",
+                        "city", 1234, "country", "Administrator",
+                        "test@test.ch", "078 0000000", "1990-01-01",0));
 
+        Employee foundEmployee = empRepo.findOne(employee.getEmployeeId());
+        foundEmployee.setZipcode(987654321);
+
+        empRepo.save(foundEmployee);
+
+        assertTrue(empRepo.findOne(employee.getEmployeeId()).getZipcode() == 987654321);
+    }
 
 }
