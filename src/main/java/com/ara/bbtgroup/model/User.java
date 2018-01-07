@@ -14,7 +14,7 @@ public class User {
     // ======================================
 
     @Id
-    @Column(name= "user_id", nullable = false)
+    @Column(name= "user_id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
@@ -60,13 +60,17 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
+        this.password = generateHashFromInput(password);
+    }
+
+    public String generateHashFromInput(String input){
         Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
 
-        String hashedPassword = passwordEncoder.encodePassword(password, null);
-        this.password = hashedPassword;
+        String hashedPassword = passwordEncoder.encodePassword(input, null);
+        return hashedPassword;
     }
 }

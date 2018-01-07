@@ -8,6 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,23 @@ public class UserResource {
         }
     }
 
+    @GetMapping(path = "/id/{username}/pass/{password}")
+    public @ResponseBody ResponseEntity<User> checkUserData(@PathVariable String username, @PathVariable String password) {
+
+        // code password into hash string
+        Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
+        String hashedPassword = passwordEncoder.encodePassword(password, null);
+
+        User user = userRepository.checkCredential(username, hashedPassword);
+        if (user.getPassword() != null)
+        {
+            return new ResponseEntity<User>(userRepository.checkCredential(username, hashedPassword), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
     // ======================================
     // =             POST METHOD            =
     // ======================================
@@ -48,13 +66,8 @@ public class UserResource {
     @PostMapping(path = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<User> createUser(@RequestBody User userRequest){
 
-        if(userRequest == null || userRequest.getUsername() == "" || userRequest.getUsername() == "null"){
-            return new ResponseEntity<User>(userRequest, HttpStatus.CREATED);
-        }
-        else{
-            userRepository.save(userRequest);
-            return new ResponseEntity<User>(userRequest, HttpStatus.CREATED);
-        }
+        userRepository.save(userRequest);
+        return new ResponseEntity<User>(userRequest, HttpStatus.CREATED);
     }
 
     // ======================================
