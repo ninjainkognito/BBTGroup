@@ -9,8 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
-import java.util.*;
+import java.util.List;
 
 @Controller
 @RequestMapping("/tasks")
@@ -35,6 +34,7 @@ public class TaskResource {
 
     @GetMapping(path = "/{taskId}")
     public ResponseEntity<Task> getById(@PathVariable String taskId) {
+
         Long temp = Long.valueOf(taskId).longValue();
 
         return new ResponseEntity<>(taskRepository.findByTaskId(temp), HttpStatus.OK);
@@ -63,8 +63,6 @@ public class TaskResource {
 
         return taskRepository.findAllByOwnerOfTheTaskAndTaskStatusIsEqualToDone(ownerId);
     }
-
-
 
     // ======================================
     // =             POST METHOD            =

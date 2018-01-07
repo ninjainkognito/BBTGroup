@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import static java.lang.Long.valueOf;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -25,7 +26,6 @@ public class TaskResourceTest {
 
     private final Date STARTDATE = new Date(2018,01,01);
     private final Date ENDDATE = new Date(2018,01,31);
-
     private final Long OWNER = valueOf(1);
 
 
@@ -42,7 +42,7 @@ public class TaskResourceTest {
     }
 
     @Test
-    public void saveTaskAndFoundById(){
+    public void saveTask_whenFoundById_thenOk(){
 
         Task task = taskRepository
                 .save(new Task("title","description", 1, STARTDATE, ENDDATE, OWNER));
@@ -51,6 +51,7 @@ public class TaskResourceTest {
                 .findOne(task.getTaskId());
 
         assertNotNull(foundTsk);
+        assertEquals(task.getTaskId(), foundTsk.getTaskId());
     }
 
     @Test
@@ -83,6 +84,19 @@ public class TaskResourceTest {
 
         assertTrue(taskRepository.findAll().size() != lastInsertTask);
 
+    }
+
+    @Test
+    public void updateTask_whenUpdated_thenOk(){
+        Task task = taskRepository
+                .save(new Task("POST Task","POST Task", 1, STARTDATE, ENDDATE, OWNER));
+
+        Task foundTsk = taskRepository.findOne(task.getTaskId());
+        foundTsk.setTaskStatus(2);
+
+        taskRepository.save(foundTsk);
+
+        assertEquals(2, taskRepository.findOne(task.getTaskId()).getTaskStatus());
     }
 
 }
