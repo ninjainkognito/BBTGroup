@@ -1,5 +1,7 @@
 package com.ara.bbtgroup.model;
 
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -34,7 +36,7 @@ public class User {
 
     public User(String username, String password) {
         this.username = username;
-        this.password = password;
+        setPassword(password);
     }
     // ======================================
     // =          Getters & Setters         =
@@ -62,6 +64,9 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
+
+        String hashedPassword = passwordEncoder.encodePassword(password, null);
+        this.password = hashedPassword;
     }
 }

@@ -1,6 +1,5 @@
 package com.ara.bbtgroup;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
