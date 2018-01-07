@@ -49,7 +49,6 @@ public class MarketingActivityRsourceTest {
         Marketingactivity foundJob = mrepo.findOne(job.getMarketingactivityId());
 
         assertNotNull(foundJob);
-        assertEquals(job.getMarketingactivityId(), foundJob.getMarketingactivityId());
     }
 
     @Test
