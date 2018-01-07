@@ -65,10 +65,8 @@ public class MarketingActivityRsourceTest {
     @Test
     public void saveJobAndDelete_whenDeleted_thenOk(){
 
-        Long ownerTemp = valueOf(4194984);
-
         Marketingactivity job = mrepo
-                .save(new Marketingactivity("Title 1","extra info", "comment", STARTDATE, ENDDATE, 1, OWNER));
+                .save(new Marketingactivity("Title 1","extra info", "comment", STARTDATE, ENDDATE, 1, 4194984));
 
         // check if data successfully written into database
         assertTrue(mrepo.findOne(job.getMarketingactivityId()).getEmployeeId() == 4194984);

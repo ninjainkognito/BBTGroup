@@ -2,19 +2,15 @@ package com.ara.bbtgroup.rest;
 
 import com.ara.bbtgroup.model.Customer;
 import com.ara.bbtgroup.repository.CustomerRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
 import java.util.List;
 
-import static java.lang.Long.valueOf;
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -61,6 +57,7 @@ public class CustomerResourceTest {
         assertTrue(customerList.size() > 0);
     }
 
+    @Test
     public void saveCustomerAndDelete_whenDeleted_thenOk(){
 
         Customer customer = custRepo
@@ -79,7 +76,7 @@ public class CustomerResourceTest {
 
     }
 
-
+    @Test
     public void updateCustomer_whenUpdated_thenOk(){
         Customer customer = custRepo
                 .save(new Customer("Max", "Muster", "Musterstrasse 50",
@@ -93,5 +90,4 @@ public class CustomerResourceTest {
 
         assertEquals(java.util.Optional.of(987654321), custRepo.findOne(customer.getCustomerId()).getZipcode());
     }
-
 }
