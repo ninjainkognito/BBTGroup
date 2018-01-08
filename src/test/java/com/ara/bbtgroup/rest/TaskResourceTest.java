@@ -64,8 +64,7 @@ public class TaskResourceTest {
 
         Long ownerTemp = valueOf(4194984);
 
-        Task task = taskRepository
-                .save(new Task("SaveTaskAndDelete","Testing", 1, STARTDATE, ENDDATE, ownerTemp));
+        Task task = taskRepository.save(new Task("SaveTaskAndDelete","Testing", 1, STARTDATE, ENDDATE, ownerTemp));
 
         // check if data successfully written into database
         assertTrue(taskRepository.findAllByOwnerOfTheTask("4194984").size() > 0);
@@ -77,8 +76,7 @@ public class TaskResourceTest {
 
     @Test
     public void updateTask_whenUpdated_thenOk(){
-        Task task = taskRepository
-                .save(new Task("POST Task","POST Task", 1, STARTDATE, ENDDATE, OWNER));
+        Task task = taskRepository.save(new Task("POST Task","POST Task", 1, STARTDATE, ENDDATE, OWNER));
 
         Task foundTsk = taskRepository.findOne(task.getTaskId());
         foundTsk.setTaskStatus(2);
