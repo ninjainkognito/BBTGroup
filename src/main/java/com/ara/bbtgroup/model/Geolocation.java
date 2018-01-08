@@ -10,8 +10,6 @@ public class Geolocation {
     // =             Attributes             =
     // ======================================
 
-    // AIzaSyBF_iPPbbY7UgRGc11Az2XnF2YAJSak2OY
-
     @Id
     @Column(name = "geolocation_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
