@@ -32,10 +32,8 @@ public class Contact {
 
     private String desription;
 
-    @Range(min = 1)
     private int employeId;
 
-    @Range(min = 1)
     private int customerId;
 
     // ======================================
