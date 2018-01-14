@@ -1,3 +1,3 @@
-#BBTGroup
+A web application hosted on Microsoft Azure.
 
-Todo
+https://bbt-group-frontend.azurewebsites.net
